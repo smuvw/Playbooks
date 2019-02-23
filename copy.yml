@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+  - name: write the file
+    template: src=/home/ansible/test  dest=/home/ansible/infy/

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  user: ansible
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: installing the httpd
+      action: yum name=httpd state=installed
+    - name: check for git 
+      action: yum name=git state=absent

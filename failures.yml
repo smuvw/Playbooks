@@ -1,0 +1,8 @@
+---
+- hosts: local
+  tasks: 
+   - name: excute a  command which will fail
+     command: /bin/abcd
+     ignore_errors: yes
+   - name: install httpd
+     yum: pkg=httpd state=latest

@@ -1,0 +1,12 @@
+- hosts: local
+  sudo: yes
+  connection: ssh
+  tasks:
+   - name: install httpd
+     yum: pkg=httpd state=installed
+   - name: check servics satatus  
+     raw: systemctl status httpd > /home/ansible/test123.log
+   - name: restart serv
+     shell: systemctl start httpd
+   - name: display date
+     raw: /usr/bin/date

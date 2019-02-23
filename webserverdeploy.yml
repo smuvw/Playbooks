@@ -1,0 +1,30 @@
+---
+- hosts: local
+  user: ansible
+  sudo: yes
+  vars:
+   apache_pkg: httpd
+   distibution: redhat
+   apache_version: 2.4
+   apache_dir: /var/www/sample
+   apache_fqdn: localhost.localdomain.com
+  tasks: 
+   - name: install web server
+     yum: pkg=httpd state=latest
+   - name: create web server dir
+     file: path=/var/www/sample state=directory mode=644
+   - name: copy the apache config file to remote server
+     copy: src=files/httpd.conf.template dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=644
+   - name: creat the VHOST.D dir on remote serve
+     file: path=/etc/httpd/vhost.d state=directory mode=755
+   - name: copy and untar the source for the site
+     unarchive: src=files/sitecode.tar.gz dest=/var/www/sample
+   - name: copy the default vhost config file
+     copy: src=files/default.conf.template dest=/etc/httpd/vhost.d/default.conf owner=root group=root mode=644
+   - name: start the web server services
+     service: name=httpd state=started
+   - name: test the web server
+     shell: curl http://localhost.com
+     register: result
+   - name: DisplayResult
+     debug: var=result

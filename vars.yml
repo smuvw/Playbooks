@@ -1,0 +1,8 @@
+--- # here is your discription
+- hosts: local
+  vars_files:
+    - files.yml
+  tasks:
+    - name: install httpd
+      yum: pkg={{ pkg }} state=installed update_cache=true
+

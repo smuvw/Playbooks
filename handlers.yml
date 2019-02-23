@@ -1,0 +1,14 @@
+---
+- hosts: all
+  user: ansible
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: install httpd
+      yum: name=httpd state=latest
+      notify:
+      -  Restart HTTPD
+  handlers:
+    - name: Restart HTTPD
+      service: name=httpd state=restarted
+      

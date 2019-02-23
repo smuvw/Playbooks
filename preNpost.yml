@@ -1,0 +1,13 @@
+---
+- hosts: local
+  user: ansible
+  sudo: yes
+  pre_tasks:
+   - name: install git
+     yum: pkg=git state=latest
+  roles:
+    - webservers
+  post_tasks:
+    - name: date
+      raw: /usr/bin/date > /home/ansible/rolesdate.log
+

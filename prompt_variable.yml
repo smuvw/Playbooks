@@ -1,0 +1,13 @@
+---
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars_prompt:
+    - name: pkg
+      prompt: install which package?
+  tasks:
+    - name: install httpd with using variable file
+      yum: name={{ pkg }} state=installed
+

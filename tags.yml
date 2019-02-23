@@ -1,0 +1,14 @@
+---
+- hosts: local
+  tasks: 
+   - name: install httpd and git
+     yum: pkg={{ item }} state=installed
+     with_items:
+       - httpd
+       - git
+     tags:
+       - packages
+   - name: verify httpd service
+     raw: yum list installed | grep httpd > /home/ansible/pkg.log
+     tags:
+       - always

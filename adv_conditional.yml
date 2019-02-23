@@ -1,0 +1,11 @@
+---
+- hosts: local
+  sudo: yes
+  vars:
+    create_file: true
+  tasks:
+   - name: create a file
+     file: 
+       state: touch
+       path: /home/ansible/variable_was_true_new
+     when: not create_file

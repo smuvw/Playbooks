@@ -1,0 +1,8 @@
+- local
+- sudo: yes
+- connection: ssh
+- tasks:
+- install httpd
+-check service status
+- start the services
+-date

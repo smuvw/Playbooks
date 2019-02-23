@@ -1,0 +1,11 @@
+---
+- hosts: local
+  tasks: 
+    - name: multiple items
+      file:
+       state: touch
+       path: /home/ansible/{{ item }}
+      with_items:
+       - file1
+       - file2
+       - file3

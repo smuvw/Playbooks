@@ -1,0 +1,5 @@
+--- # here is your discription
+- hosts: all
+  tasks:
+    - name: install httpd
+      yum: pkg=httpd state=installed update_cache=true

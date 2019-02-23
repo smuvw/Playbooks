@@ -1,0 +1,21 @@
+---
+- hosts: all
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  connection: ssh
+  tasks:
+   - name: date/time stamp for when playbook starts
+     raw: /usr/bin/date > /home/ansible/playbook_starts.log
+   - name: install the apache
+     yum: name=httpd state=latest
+   - name: start the httpd service
+     service: name=httpd state=restarted
+   - name: verify that services are running
+     command: systemctl status httpd
+     register: result
+   - debug: var=result
+   - name: log the packages
+     raw: yum list installed > /home/ansible/installed.log
+   - name: date/time stamp for when playbook ends
+     raw: /usr/bin/date > /home/ansible/playbook_end.log

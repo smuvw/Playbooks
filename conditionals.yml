@@ -1,0 +1,13 @@
+---
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: install apachi to Debian linux
+      command: apt-get -y install apache2
+      when: ansible_os_family == "Debian"
+    - name: install apache in RedHat/centos
+      command: yum -y install httpd
+      when: ansible_os_family == "RedHat"

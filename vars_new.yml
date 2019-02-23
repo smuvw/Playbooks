@@ -1,0 +1,9 @@
+--- # here is your discription
+- hosts: local
+  vars:
+      controler_server: ansible_controler
+      logs: /var/log/messages
+  tasks:
+    - name: install httpd
+      yum: pkg=httpd state=installed update_cache=true
+

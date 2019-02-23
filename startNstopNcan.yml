@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+   - name: install httpd
+     yum: pkg=httpd state=latest
+   - name: install git
+     yum: pkg=git state=latest
+   - name: list home dir
+     command: ls -la /home/ansible
+     register: result
+   - debug: var=result

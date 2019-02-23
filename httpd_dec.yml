@@ -1,0 +1,5 @@
+--- # installing apache package
+- hosts: all
+  tasks:
+   - name: installing httdp package
+     yum: name=httpd state=installed

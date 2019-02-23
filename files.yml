@@ -1,0 +1,3 @@
+controler_server: ansible_controler
+logs: /var/log/messages
+pkg: httpd

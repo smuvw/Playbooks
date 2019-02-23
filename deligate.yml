@@ -1,0 +1,9 @@
+--- # DELEGATE TO PLAYBOOK
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh
+  tasks:
+    - name: Install httpd
+      yum: pkg=httpd state=latest
+      delegate_to: 127.0.0.1

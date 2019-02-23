@@ -1,0 +1,5 @@
+---
+- name: install apache
+  yum: pkg=httpd state=latest
+- name: install git
+  yum: pkg=git state=latest
